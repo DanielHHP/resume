@@ -1,0 +1,99 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
+
+\documentclass{resume}
+\usepackage{zh_CN-Adobefonts_external} % Simplified Chinese Support using external fonts (./fonts/zh_CN-Adobe/)
+%\usepackage{zh_CN-Adobefonts_internal} % Simplified Chinese Support using system fonts
+\usepackage{linespacing_fix} % disable extra space before next section
+\usepackage{cite}
+\usepackage{hyperref}
+
+\begin{document}
+\pagenumbering{gobble} % suppress displaying page number
+
+\name{黄海平}
+
+% {E-mail}{mobilephone}{homepage}
+\contactInfoWide{hhp@xxx.com}{(+86) 123-456-78901}{https://github.com/DanielHHP}
+% {E-mail}{mobilephone}
+%\basicContactInfo{hhp@xxx.com}{(+86) 123-456-78901}
+
+\section{\faGraduationCap\  教育背景}
+\datedsubsection{\textbf{北京邮电大学}, 北京}{2009年9月 -- 2012年3月}
+\textit{硕士}\ 计算机科学与技术
+\datedsubsection{\textbf{北京邮电大学}, 北京}{2005年9月 -- 2009年6月}
+\textit{学士}\ 软件工程
+
+\section{\faUsers\ 公司项目经历}
+\datedsubsection{\textbf{一淘/主搜产品库} 搜索事业部-搜索工程技术-产品库技术}{2012年4月 -- 2014年9月}
+\role{Python/Hadoop/Hive/C++}{核心开发人员}
+\begin{onehalfspacing}
+构建标类产品信息库（主要涵盖3C，家电，美妆等产品标准化程度较高行业），服务一淘比价搜索和淘宝主搜产品搜业务。
+\begin{itemize}
+  \item 产品节点构建系统(Pbuilder)[Python]：NER(命名实体识别)，从外网抓取商品信息以及淘系卖家发布的产品信息抽取品牌、型号等实体信息（采用词表+状态机+ 识别规则实现实体识别）。与产品库前端管理工具一同构成半自动半人工的产品信息发现系统。沉淀的产品信息数据用于为商品打标，进而实现比价和导购业务。（产品搜形式：淘宝主搜：“手机”，“笔记本电脑”等Query）。
+  \item 产品节点索引扩展文本挖掘[Hadoop(Streaming)/Hive]：通过产品节点关联的商品标题文本，统计AliWS 中粒度分词后的高频短语（tri-gram）进入索引，扩大产品搜召回。
+  \item 产品搜索Query导航推荐[Hive/C++]：针对某一搜索Query，根据产品搜引擎召回和产品销量或属性值含义进行属性值提取和排序，离线计算出产品搜相关Query 所需推荐的类目以及属性、属性值信息；在线部分通过主搜QP （Query Planner）产品搜导航模块加载离线产出数据返回Query导航推荐结果。
+\end{itemize}
+\end{onehalfspacing}
+
+\datedsubsection{\textbf{商品文本分析} 搜索事业部-搜索工程技术-产品库技术}{2014年10 月 -- 2015年4月}
+\role{C++}{核心开发人员}
+\begin{onehalfspacing}
+针对淘宝商品文本信息进行实体识别，根据挖掘的实体词表知识及文本模式，提取品牌，型号，风格，款式，颜色，容量，时间等实体信息，并进行标题和属性信息一致性检验，一方面支持搜索相关性改进，另一方面为商品发布端提供输入校验服务，保障商品元数据质量。
+\begin{itemize}
+  \item 商品文本分析：构建实体知识库（通过语义网表示法存储词条和二元关系，如同义、上下位等），利用该知识针对AliWS分词（小粒度）结果进行双向最大匹配完成实体词打标，并针对颜色实体进行了扩展识别（识别拼色，组合色等模式）。
+  \item 商品发布-颜色文本校验在线服务：基于商品文本分析系统，通过SAP框架对淘宝商品发布端提供颜色文本分析HTTP服务，引导卖家填写规范的颜色词。
+\end{itemize}
+\end{onehalfspacing}
+
+\datedsubsection{\textbf{商品管理处罚决策系统} 搜索事业部-搜索算法-商品数据}{2015 年5月 -- 至今}
+\role{Hadoop/Hive/HCatalog/Java}{项目PM/主要开发人员}
+\begin{onehalfspacing}
+构建商品管理综合决策系统，支持假货、信息滥发等商品管理业务。该系统依靠商品云图特征平台中的各维特征（商品/卖家），根据运营配置的业务规则，完成对问题商品的定性、定量处罚落地（处罚中心案例处罚或搜索流量管控）。
+\begin{itemize}
+  \item 决策风险规避：系统支持对处罚影响面进行约束（商品数/卖家数/商品成交总额等），并选取正、反向商品特征，采用AHP（层次分析法）计算处罚优先级，优先打击影响恶劣的商品和卖家。
+  \item 处罚结果分析：系统支持模拟运转，可预估当次处罚可能产生的影响（商品删除、卖家扣分数，对成交额可能的影响等）。并以报表形式展示数据分布情况。
+  \item 处罚效果跟踪：在决策执行后，建立效果追踪商品数据集，通过定期效果追踪指标统计，进行处罚效果的追踪（问题整改情况，处罚影响等指标）。
+\end{itemize}
+\end{onehalfspacing}
+
+% Reference Test
+%\datedsubsection{\textbf{Paper Title\cite{zaharia2012resilient}}}{May. 2015}
+%An xxx optimized for xxx\cite{verma2015large}
+%\begin{itemize}
+%  \item main contribution
+%\end{itemize}
+
+\section{\faCogs\ IT 技能}
+% increase linespacing [parsep=0.5ex]
+\begin{itemize}[parsep=0.5ex]
+  \item 编程语言: C/C++，Python，Java，B Shell；工具：VIM，Eclipse，IDEA
+  \item 构建工具：Makefile，Maven，Gradle
+  \item 开源框架应用：Hadoop(MR,Streaming)，Hive(SQL+UDF)
+  \item 公司库：ODPS(SQL+UDF)，AliWS，HSF(stand-alone client)，TDDL(Spring+MyBatis)，SAP
+\end{itemize}
+
+%\section{\faHeartO\ 获奖情况}
+%\datedline{\textit{第一名}, xxx 比赛}{2013 年6 月}
+%\datedline{其他奖项}{2015}
+
+\section{\faInfo\ 个人信息}
+% increase linespacing [parsep=0.5ex]
+\begin{itemize}[parsep=0.5ex]
+  %\item 技术博客: http://blog.yours.me
+  %\item GitLab: https://github.com/username
+  %\item 语言: 英语 - 熟练(TOEFL xxx)
+  \item 学习过nltk，并由此激发开发了aliwstk（提供了AliWS Python扩展，简化接口，方便与nltk包提供的算法进行集成）。(\url{http://gitlab.alibaba-inc.com/yuqing.hhp/aliwstk})(\url{http://gitlab.alibaba-inc.com/yuqing.hhp/aliwstk_data})
+  \item 会使用webpy，Django等web开发框架（项目中常使用webpy作http服务器mock）
+  \item 了解过Antlr，并实现了简单的表达式求值器
+  \item 知道NLP，机器学习领域常用算法（序列标注，聚类，分类，回归，主题模型等）
+  \item 自学R语言。《R in Action》
+  \item 热爱技术、擅长后台开发、快速学习、关注广泛
+\end{itemize}
+
+%% Reference
+%\newpage
+%\bibliographystyle{IEEETran}
+%\bibliography{mycite}
+\end{document}
